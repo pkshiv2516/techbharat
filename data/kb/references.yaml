@@ -1,0 +1,14 @@
+version: 2025-09-06
+sources:
+  - id: who_free_sugars
+    title: WHO Guideline on free sugars intake for adults and children (2015, reaffirmed)
+    note: Thresholds for % energy from free sugars; used here as heuristic for grams/day bands per 100g.
+  - id: who_salt
+    title: WHO Guideline on sodium intake (2012, reaffirmed)
+    note: Sodium thresholds adapted per 100g typical packaged foods.
+  - id: fssai_trans_fat
+    title: FSSAI regulations on trans fat (<=2% of total fat)
+    note: Treat any declared industrial trans fat > 2% of total fat as critical.
+  - id: additive_caution
+    title: EFSA/FSSAI additive classes
+    note: Simple list of additives with caution flags (e.g., certain artificial sweeteners for children).

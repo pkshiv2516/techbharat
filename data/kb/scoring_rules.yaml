@@ -1,0 +1,78 @@
+bands:
+  - name: A
+    min: 80
+  - name: B
+    min: 60
+  - name: C
+    min: 40
+  - name: D
+    min: 20
+  - name: E
+    min: 0
+
+
+rules:
+  - id: sugar_high
+    metric: sugars_100g
+    op: ">"
+    value: 22.5
+    weight: -25
+    driver: "High sugars per 100g (>22.5g)"
+    source: who_free_sugars
+  - id: sugar_med
+    metric: sugars_100g
+    between: [5, 22.5]
+    weight: -10
+    driver: "Moderate sugars per 100g (5–22.5g)"
+    source: who_free_sugars
+  - id: salt_high
+    metric: salt_100g
+    op: ">"
+    value: 1.5
+    weight: -25
+    driver: "High salt per 100g (>1.5g)"
+    source: who_salt
+  - id: salt_med
+    metric: salt_100g
+    between: [0.3, 1.5]
+    weight: -10
+    driver: "Moderate salt per 100g (0.3–1.5g)"
+    source: who_salt
+  - id: satfat_high
+    metric: saturated_fat_100g
+    op: ">"
+    value: 5
+    weight: -20
+    driver: "High saturated fat per 100g (>5g)"
+    source: who_free_sugars
+  - id: protein_bonus
+    metric: proteins_100g
+    op: ">="
+    value: 10
+    weight: 8
+    driver: "Good protein source (≥10g/100g)"
+    source: additive_caution
+  - id: fiber_bonus
+    metric: fiber_100g
+    op: ">="
+    value: 6
+    weight: 10
+    driver: "High fiber (≥6g/100g)"
+    source: additive_caution
+  - id: transfat_critical
+    metric: trans_fat_ratio
+    op: ">"
+    value: 0.02
+    weight: -50
+    driver: "Trans fat exceeds 2% of total fat"
+    source: fssai_trans_fat
+  - id: additive_flag
+    metric: additive_flags
+    contains_any: ["acesulfame_k", "aspartame", "saccharin"]
+    weight: -8
+    driver: "Contains flagged artificial sweeteners"
+    source: additive_caution
+
+
+base_score: 80
+clamp: [0, 100]
