@@ -3,35 +3,29 @@ import requests
 import base64
 import os
 
-
 API = f"http://{os.getenv('API_HOST','localhost')}:{os.getenv('API_PORT','8000')}"
 HITL_SECRET = os.getenv('HITL_SECRET','change-me')
-
 
 st.set_page_config(page_title="Packaged Food Rating (Ollama)", layout="centered")
 st.title("🥫 Packaged Food Rating — Local Ollama + Streamlit")
 
-
 with st.sidebar:
     st.markdown("### LLM Settings")
     st.caption("This app is wired to your local Ollama for summaries and embeddings.")
-    st.text(f"OLLAMA_HOST: {os.getenv('OLLAMA_HOST','http://10.11.5.175:11434')}")
-    st.text(f"CHAT_MODEL: {os.getenv('OLLAMA_CHAT_MODEL','llama3.1:8b')}")
+    st.text(f"OLLAMA_HOST: {os.getenv('OLLAMA_HOST','http://localhost:11434')}")
+    st.text(f"CHAT_MODEL:  {os.getenv('OLLAMA_CHAT_MODEL','llama3.1:8b')}")
     st.text(f"EMBED_MODEL: {os.getenv('OLLAMA_EMBED_MODEL','nomic-embed-text:latest')}")
-
 
 with st.form("rate-form"):
     barcode = st.text_input("Barcode (optional)")
     query = st.text_input("Query (optional)", value="Rate this product")
     ingredients_text = st.text_area("Ingredients text (optional)")
     nutr = st.text_area("Nutrition key: value per 100g (JSON)", value='{"sugars": 23, "salt": 1.6, "saturated fat": 6, "protein": 9, "fiber": 2}')
-    image = st.file_uploader("Upload ingredients or barcode image (optional)", type=["png","jpg","jpeg"])
+    image = st.file_uploader("Upload ingredients or barcode image (optional)", type=["png","jpg","jpeg"])    
     submitted = st.form_submit_button("Run")
-
 
 if 'image_b64' not in st.session_state:
     st.session_state['image_b64'] = None
-
 
 if submitted:
     image_b64 = None
