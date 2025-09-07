@@ -1,8 +1,3 @@
-# Packaged Food Rating Agent — Local Ollama
-
-Now wired to **Ollama** for both **LLM summaries** and **embeddings** (RAG). Core deterministic scoring remains unchanged.
-
-## Quickstart
 ```bash
 # 1) Run Ollama locally and pull models
 ollama pull llama3.1:8b

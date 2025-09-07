@@ -28,7 +28,7 @@ class Settings(BaseModel):
     hitl_secret: str = os.getenv("HITL_SECRET", "change-me")
 
 
-    tesseract_cmd: str | None = os.getenv("TESSERACT_CMD")
+    tesseract_cmd: str | None = os.getenv("TESSERACT_CMD") 
 
 
-    settings = Settings()
+settings = Settings()

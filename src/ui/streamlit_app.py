@@ -15,7 +15,7 @@ st.title("🥫 Packaged Food Rating — Local Ollama + Streamlit")
 with st.sidebar:
     st.markdown("### LLM Settings")
     st.caption("This app is wired to your local Ollama for summaries and embeddings.")
-    st.text(f"OLLAMA_HOST: {os.getenv('OLLAMA_HOST','http://localhost:11434')}")
+    st.text(f"OLLAMA_HOST: {os.getenv('OLLAMA_HOST','http://10.11.5.175:11434')}")
     st.text(f"CHAT_MODEL: {os.getenv('OLLAMA_CHAT_MODEL','llama3.1:8b')}")
     st.text(f"EMBED_MODEL: {os.getenv('OLLAMA_EMBED_MODEL','nomic-embed-text:latest')}")
 

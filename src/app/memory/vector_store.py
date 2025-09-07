@@ -41,7 +41,7 @@ def get_store():
 
 
 
-def add_docs(texts: list[str], metadatas: list[dict] | None = None):
+def add_docs(texts: list[str], metadatas: list[dict]):
     store = get_store()
     store.add_texts(texts, metadatas=metadatas)
     store.persist()
